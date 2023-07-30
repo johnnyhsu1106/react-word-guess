@@ -16,7 +16,7 @@ const getRandomWord = () => {
 function App() {
   const [word, setWord] = useState(getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState(new Set());
-  console.log(word);
+
   const [correctLetters, incorrectLetters, isGameOver] = useMemo(() => {
     const wordSet = new Set(word);
     const correctLetters = new Set();
