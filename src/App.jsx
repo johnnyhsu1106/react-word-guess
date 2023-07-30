@@ -60,7 +60,7 @@ function App() {
 
   // Handle Key(letters) Press  Event
   useEffect(() => {
-    const eventHandler = (e) => {
+    const handler = (e) => {
       const { key } = e;
       // only a to z is valid
       if (!key.match(/^[a-z]$/) && !key.match(/^[A-Z]$/)) {
@@ -70,17 +70,17 @@ function App() {
       addGuessedLetter(key.toLowerCase());
     }
 
-    document.addEventListener('keypress', eventHandler);
+    document.addEventListener('keypress', handler);
 
     return () => {
-      document.removeEventListener('keypress', eventHandler);
+      document.removeEventListener('keypress', handler);
     }
   }, [guessedLetters]);
 
 
   // Handle Key(Enter) Press  Event
   useEffect(() => {
-    const eventHandler = (e) => {
+    const handler = (e) => {
       const { key } = e;
       if (key !== 'Enter') {
         return;
@@ -90,10 +90,10 @@ function App() {
       setGuessedLetters(new Set());
     }
 
-    document.addEventListener('keypress', eventHandler);
+    document.addEventListener('keypress', handler);
 
     return () => {
-      document.removeEventListener('keypress', eventHandler);
+      document.removeEventListener('keypress', handler);
     }
   }, [])
 
