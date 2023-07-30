@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 
-const Keyboard = ({ activeKeys, inactiveKeys, onClick, isDisabled }) => {
+const Keyboard = ({ activeKeys, inactiveKeys, onClickKey, isDisabled }) => {
   
   // Generate Keys from 'a' to 'z', only generated once.
   const keys = useMemo(() => {
@@ -23,7 +23,7 @@ const Keyboard = ({ activeKeys, inactiveKeys, onClick, isDisabled }) => {
               className={btnClassName} 
               key={key}
               disabled={isActive || isInactive || isDisabled} 
-              onClick={() => { onClick(key)}}
+              onClick={() => { onClickKey(key) }}
             >
               {key}
             </button>

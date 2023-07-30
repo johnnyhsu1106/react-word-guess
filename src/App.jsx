@@ -16,12 +16,11 @@ const getRandomWord = () => {
 function App() {
   const [word, setWord] = useState(getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState(new Set());
-
+  console.log(word);
   const [correctLetters, incorrectLetters, isGameOver] = useMemo(() => {
     const wordSet = new Set(word);
     const correctLetters = new Set();
     const incorrectLetters = new Set();
-
 
     for (const guessLetter of guessedLetters) {
       if (wordSet.has(guessLetter)) {
@@ -30,8 +29,9 @@ function App() {
         incorrectLetters.add(guessLetter);
       }
     }
+    const isGameOver = incorrectLetters.size >= 6;
     
-    return [correctLetters, incorrectLetters, incorrectLetters.size >= 6];
+    return [correctLetters, incorrectLetters, isGameOver];
   }, [guessedLetters]);
 
   const hasFoundWinner = useMemo(() => {
@@ -58,7 +58,7 @@ function App() {
   }, [guessedLetters]);
 
 
-  // Handle Key Press Event
+  // Handle Key(letters) Press  Event
   useEffect(() => {
     const eventHandler = (e) => {
       const { key } = e;
@@ -66,7 +66,7 @@ function App() {
       if (!key.match(/^[a-z]$/) && !key.match(/^[A-Z]$/)) {
         return;
       }
-      // e.preventDefault();
+
       addGuessedLetter(key.toLowerCase());
     }
 
@@ -77,6 +77,8 @@ function App() {
     }
   }, [guessedLetters]);
 
+
+  // Handle Key(Enter) Press  Event
   useEffect(() => {
     const eventHandler = (e) => {
       const { key } = e;
@@ -84,8 +86,6 @@ function App() {
         return;
       };
 
-      e.preventDefault();
-      
       setWord(getRandomWord());
       setGuessedLetters(new Set());
     }
@@ -96,6 +96,7 @@ function App() {
       document.removeEventListener('keypress', eventHandler);
     }
   }, [])
+
 
   const handleNextButtonClick = () => {
     setWord(getRandomWord());
@@ -116,7 +117,7 @@ function App() {
       
       <Keyboard
         isDisabled={ hasFoundWinner || isGameOver}
-        onClick={addGuessedLetter}
+        onClickKey={addGuessedLetter}
         activeKeys={correctLetters}
         inactiveKeys={incorrectLetters} 
       />
