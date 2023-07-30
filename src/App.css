@@ -1,0 +1,231 @@
+.container {
+  height: 100vh;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.drawing-container {
+  position: relative;
+}
+
+.drawing-left {
+  height: 50px;
+  width: 10px;
+  background: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.drawing-top {
+  height: 10px;
+  width: 200px;
+  background: black;
+  margin-left: 120px;
+}
+
+.drawing-vertical {
+  height: 350px;
+  width: 10px;
+  background: black;
+  margin-left: 120px;
+}
+
+.drawing-base {
+  height: 10px; 
+  width: 250px; 
+  background: black;
+}
+
+.drawing-head {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 10px solid black;
+  position: absolute;
+  top: 50px;
+  right: -30px;
+}
+
+.drawing-body {
+  width: 10px;
+  height: 100px;
+  background: black;
+  position: absolute;
+  top: 120px;
+  right: 0;
+
+} 
+
+.drawing-left-arm {
+  width: 100px;
+  height: 10px;
+  background: black;
+  position: absolute;
+  top: 150px;
+  right: 10px;
+  rotate: 30deg;
+  transform-origin: right bottom;
+}
+
+.drawing-right-arm {
+  width: 100px;
+  height: 10px;
+  background: black;
+  position: absolute;
+  top: 150px;
+  right: -100px;
+  rotate: -30deg;
+  transform-origin: left bottom;
+}
+
+.drawing-left-leg {
+  width: 100px;
+  height: 10px;
+  background: black;
+  position: absolute;
+  top: 210px;
+  right: 0;
+  rotate: -60deg;
+  transform-origin: right bottom;
+}
+
+.drawing-right-leg {
+  width: 100px;
+  height: 10px;
+  background: black;
+  position: absolute;
+  top: 210px;
+  right: -90px;
+  rotate: 60deg;
+  transform-origin: left bottom;
+}
+
+.word {
+  display: flex;
+  gap: 0.25rem;
+  font-family: monospace;
+  font-size: 6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.loading, .error {
+  display: flex;
+  gap: 0.25rem;
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.letter-container {
+  border-bottom: 0.25rem solid black;
+}
+
+.letter.visible {
+  visibility: visible;
+}
+
+.letter.hidden {
+  visibility: hidden;
+} 
+
+.letter.red {
+  color: red;
+}
+
+.letter.black {
+  color: black;
+}
+
+.keyboard-container {
+  align-self: stretch;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+  gap: 0.5rem;
+}
+
+.key {
+  width: 100%;
+  padding: .5rem;
+  aspect-ratio: 1 / 1;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: black;
+  border: 3px solid black;
+  background: none;
+  cursor: pointer;
+}
+
+.key.active {
+  background-color: hsl(200, 100%, 45%);
+  color: white;
+  cursor: default;
+}
+
+.key.inactive {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.key:hover:not(:disabled),
+.key:focus:not(:disabled) {
+  background-color: hsl(200, 100%, 75%);
+}
+
+.key:disabled {
+  cursor: default;
+}
+
+.message-container {
+  text-align: center;
+}
+
+.message-container p {
+  margin: 10px auto 0 auto;
+  font-size: 32px;
+}
+.message-container .message {
+  font-size: 22px;
+}
+
+.message-container .win.visible {
+  color: green;
+  visibility: visible;
+}
+
+.message-container .win.hidden {
+  visibility: hidden;
+}
+
+.message-container .lose.visible {
+  color: red;
+  visibility: visible;
+}
+
+.message-container .lose.hidden {
+  visibility: hidden;
+}
+
+button.next {
+  margin: 10px auto 30px auto;
+  padding: 10px 20px;
+  color: #333;
+  background-color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button.next:hover {
+  color: #eee;
+  background-color: #333;
+}
