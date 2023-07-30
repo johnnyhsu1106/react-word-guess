@@ -55,7 +55,7 @@ function App() {
       return new Set([...prevGuessedLetters, letter]);
     })
     
-  }, [guessedLetters]);
+  }, [guessedLetters, isGameOver, hasFoundWinner]);
 
 
   // Handle Key(letters) Press  Event
