@@ -9,9 +9,8 @@ const API_ENDPOINT = 'https://random-word-api.vercel.app/api?words=1';
 
 function App() {
   const [word, setWord] = useState('');
-  
   const [guessedLetters, setGuessedLetters] = useState(new Set());
-
+  
   const [correctLetters, incorrectLetters, isGameOver] = useMemo(() => {
     const wordSet = new Set(word);
     const correctLetters = new Set();
@@ -24,7 +23,8 @@ function App() {
         incorrectLetters.add(guessLetter);
       }
     }
-    const isGameOver = incorrectLetters.size >= 6;
+    // Once the incorrectness guess is more than 5 times, game over
+    const isGameOver = incorrectLetters.size >= 6; 
     
     return [correctLetters, incorrectLetters, isGameOver];
   }, [guessedLetters]);
