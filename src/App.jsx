@@ -4,6 +4,7 @@ import Word from './Word';
 import Keyboard from './Keyboard';
 import Message from './Message';
 import './App.css';
+const API_ENDPOINT = 'https://random-word-api.vercel.app/api?words=1';
 
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
   }, [guessedLetters, isGameOver, hasFoundWinner]);
 
   const setRandomWord = () => {
-    fetch('https://random-word-api.herokuapp.com/word')
+    fetch(API_ENDPOINT)
       .then((res) => {
         if (!res.ok) {
           throw new Error('Invalid Https request');
