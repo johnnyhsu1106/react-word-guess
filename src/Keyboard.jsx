@@ -1,7 +1,11 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
-const Keyboard = ({ activeKeys, inactiveKeys, onClickKey, isDisabled }) => {
-  
+const Keyboard = ({ 
+  activeKeys, 
+  inactiveKeys, 
+  onClickKey, 
+  isDisabled 
+}) => {
   // Generate Keys from 'a' to 'z', only generated once.
   const keys = useMemo(() => {
     const keys = [];

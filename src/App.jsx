@@ -1,20 +1,14 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Drawing from './Drawing';
 import Word from './Word';
 import Keyboard from './Keyboard';
 import Message from './Message';
+import './App.css';
 
-import words from './words.json'
-
-import './App.css'
-
-const getRandomWord = () => {
-  return words[Math.floor(Math.random() * words.length)];
-}
 
 function App() {
-  const [word, setWord] = useState(getRandomWord());
+  const [word, setWord] = useState('');
+  
   const [guessedLetters, setGuessedLetters] = useState(new Set());
 
   const [correctLetters, incorrectLetters, isGameOver] = useMemo(() => {
@@ -57,6 +51,26 @@ function App() {
     
   }, [guessedLetters, isGameOver, hasFoundWinner]);
 
+  const setRandomWord = () => {
+    fetch('https://random-word-api.herokuapp.com/word')
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Invalid Https request');
+        }
+        return res.json();
+
+      }).then((data) => {
+        const [word] = data;
+        setWord(word);
+        
+      }).catch((err) => {
+        console.error(err);
+      })
+  }
+
+  useEffect(() => {
+    setRandomWord();
+  }, []);
 
   // Handle Key(letters) Press  Event
   useEffect(() => {
@@ -78,7 +92,7 @@ function App() {
   }, [guessedLetters]);
 
 
-  // Handle Key(Enter) Press  Event
+  // Handle Key(Enter) Press Event - get new word to start new game
   useEffect(() => {
     const handler = (e) => {
       const { key } = e;
@@ -86,7 +100,7 @@ function App() {
         return;
       };
 
-      setWord(getRandomWord());
+      setRandomWord();
       setGuessedLetters(new Set());
     }
 
@@ -99,7 +113,7 @@ function App() {
 
 
   const handleNextButtonClick = () => {
-    setWord(getRandomWord());
+    setRandomWord();
     setGuessedLetters(new Set());
   };
 
@@ -130,4 +144,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

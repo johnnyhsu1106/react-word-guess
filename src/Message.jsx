@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Message = ({ 
   hasFoundWinner,
   isGameOver,
@@ -8,7 +6,6 @@ const Message = ({
 
   return (
     <div className='message-container'>
-
       <p className='message'>
         Please press "Enter" to start next word or click this button
       </p>
