@@ -1,11 +1,17 @@
 import { useMemo } from 'react'
+import { useWordContext } from '../context/useWordContext';
 
-const Keyboard = ({ 
-  activeKeys, 
-  inactiveKeys, 
-  onClickKey, 
-  isDisabled 
-}) => {
+const Keyboard = () => {
+  const {
+    correctLetters,
+    incorrectLetters,
+    hasFoundWinner,
+    isGameOver,
+    handleGuessedLetterAdd
+  } = useWordContext();
+  
+  const isDisabled = hasFoundWinner || isGameOver;
+
   // Generate Keys from 'a' to 'z', only generated once.
   const keys = useMemo(() => {
     const keys = [];
@@ -19,15 +25,15 @@ const Keyboard = ({
     <div className='keyboard-container'>
       <div className='keyboard'>
         {keys.map((key) => {
-          const isActive = activeKeys.has(key);
-          const isInactive = inactiveKeys.has(key);
+          const isActive = correctLetters.has(key);
+          const isInactive = incorrectLetters.has(key);
           const btnClassName = `key ${isActive ? 'active' : ''}${isInactive ? 'inactive' : ''}`;
           return (
             <button
               className={btnClassName} 
               key={key}
               disabled={isActive || isInactive || isDisabled} 
-              onClick={() => { onClickKey(key) }}
+              onClick={() => { handleGuessedLetterAdd(key) }}
             >
               {key}
             </button>

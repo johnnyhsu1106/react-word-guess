@@ -1,8 +1,12 @@
-const Message = ({ 
-  hasFoundWinner,
-  isGameOver,
-  onClickNextButton
-}) => {
+import { useWordContext } from '../context/useWordContext';
+
+const Message = () => {
+  const {
+    hasFoundWinner,
+    isGameOver,
+    handleNextButtonClick
+  } = useWordContext();
+
 
   return (
     <div className='message-container'>
@@ -11,7 +15,7 @@ const Message = ({
       </p>
       <button 
         className='next'
-        onClick={onClickNextButton}
+        onClick={handleNextButtonClick}
       >
         Next Word
       </button>

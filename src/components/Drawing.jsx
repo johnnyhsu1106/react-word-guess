@@ -1,7 +1,11 @@
-const BODY_PARTS = ['head', 'body',  'left-arm', 'right-arm', 'left-leg', 'right-leg'];
+import { useWordContext } from '../context/useWordContext';
+import BODY_PARTS from '../utils/body';
 
-const Drawing = ({ numOfIncorrectGuess }) => {
-  
+const Drawing = () => {
+  const {
+    numOfIncorrectGuess
+  } = useWordContext();
+
   return (
     <div className='drawing-container'>
       {BODY_PARTS.slice(0, numOfIncorrectGuess).map((bodyPart, i) => {
