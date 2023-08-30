@@ -29,7 +29,7 @@ const WordProvider = ({ children }) => {
       }
     }
     // Once the incorrectness guess is more than 5 times, game over
-    const isGameOver = incorrectLetters.size >= BODY_PARTS.legnth; 
+    const isGameOver = incorrectLetters.size >= BODY_PARTS.length; 
     
     return [correctLetters, incorrectLetters, isGameOver];
   }, [guessedLetters]);
