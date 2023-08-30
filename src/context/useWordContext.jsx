@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback, useContext, createContext } from 'react'
-import { fetchWord } from '../utils/fetchWord';
 import  BODY_PARTS  from '../utils/body';
 
+const API_ENDPOINT = 'https://random-word-api.vercel.app/api?words=1';
 const WordContext = createContext();
 
 
@@ -39,17 +39,24 @@ const WordProvider = ({ children }) => {
     setIsLoading(true);
     setIsError(false);
 
-    fetchWord().then((data) => {
-      const [word] = data;
-      setWord(word);
-      
-    }).catch((err) => {
-      setIsError(true);
-      console.err(err);
-
-    }).finally(() => {
-      setIsLoading(false);
-    });
+    fetch(API_ENDPOINT)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Invalid Https request');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        const [word] = data;
+        setWord(word);
+      })
+      .catch((err) => {
+        setIsError(true);
+        console.err(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const hasFoundWinner = useMemo(() => {
