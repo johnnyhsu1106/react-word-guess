@@ -135,7 +135,6 @@ const WordProvider = ({ children }) => {
   };
 
   const context = {
-
     word,
     numOfIncorrectGuess: incorrectLetters.size,
     hasFoundWinner,
