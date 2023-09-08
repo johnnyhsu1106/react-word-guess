@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "react-word-guess-by-jh",
     "public": "dist",
     "ignore": [
       "firebase.json",
