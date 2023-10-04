@@ -6,7 +6,11 @@ const WordContext = createContext();
 
 
 const useWordContext = () => {
-  return useContext(WordContext);
+  const context = useContext(WordContext);
+  if (context === undefined) {
+    throw new Error('useWordContext must be used within a WordProvider');
+  }
+  return context;
 };
 
 
