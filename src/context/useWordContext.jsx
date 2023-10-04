@@ -13,8 +13,6 @@ const useWordContext = () => {
 const WordProvider = ({ children }) => {
   const [word, setWord] = useState('');
   const [guessedLetters, setGuessedLetters] = useState(new Set());
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
   
   const [correctLetters, incorrectLetters, isGameOver] = useMemo(() => {
     const wordSet = new Set(word);
@@ -36,8 +34,6 @@ const WordProvider = ({ children }) => {
 
 
   const setRandomWord = () => {
-    setIsLoading(true);
-    setIsError(false);
 
     fetch(API_ENDPOINT)
       .then((res) => {
@@ -51,11 +47,7 @@ const WordProvider = ({ children }) => {
         setWord(word);
       })
       .catch((err) => {
-        setIsError(true);
         console.err(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
       });
   };
 
@@ -139,8 +131,6 @@ const WordProvider = ({ children }) => {
     numOfIncorrectGuess: incorrectLetters.size,
     hasFoundWinner,
     isGameOver,
-    isLoading,
-    isError,
     guessedLetters,
     correctLetters,
     incorrectLetters,

@@ -5,21 +5,10 @@ const Word = () => {
     word,
     hasFoundWinner,
     isGameOver,
-    isLoading,
-    isError,
     guessedLetters
   } = useWordContext();
 
   const hasRevealed = hasFoundWinner || isGameOver;
-
-  if (isLoading) {
-    return <p> Loading ...</p>
-  }
-
-  if (isError) {
-    return <p> Something goes wrong. Please try again </p>
-  }
-
 
   return (
     <div className='word'>
