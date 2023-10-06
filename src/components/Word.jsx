@@ -12,7 +12,7 @@ const Word = () => {
 
   return (
     <div className='word'>
-      {word?.split('').map((letter, index) => {
+      {word.split('').map((letter, index) => {
         const isVisible = guessedLetters.has(letter) || hasRevealed;
         const isRed = !guessedLetters.has(letter) && hasRevealed;
         const letterClassName = `letter ${isVisible ? 'visible' : 'hidden'} ${isRed ? 'red' : 'black'}`;
