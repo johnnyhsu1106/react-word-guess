@@ -37,22 +37,20 @@ const WordProvider = ({ children }) => {
   }, [guessedLetters]);
 
 
-  const setRandomWord = () => {
+  const setRandomWord = async () => {
+    try {
+      const res = await fetch(API_ENDPOINT);
+      if (!res.ok) {
+        throw new Error('Invalid Https request');
+      }
+      const data = await res.json();
+      const [word] = data;
 
-    fetch(API_ENDPOINT)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('Invalid Https request');
-        }
-        return res.json();
-      })
-      .then((data) => {
-        const [word] = data;
-        setWord(word);
-      })
-      .catch((err) => {
-        console.err(err);
-      });
+      setWord(word);
+
+    } catch (error) {
+      throw new Error(error);
+    };
   };
 
   const hasFoundWinner = useMemo(() => {
