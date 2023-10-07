@@ -25,7 +25,7 @@ const Keyboard = () => {
         {keys.map((key) => {
           const isActive = correctLetters.has(key);
           const isInactive = incorrectLetters.has(key);
-          const btnClassName = `key ${isActive ? 'active' : ''}${isInactive ? 'inactive' : ''}`;
+          const btnClassName = `key ${isActive ? 'active' : ''} ${isInactive ? 'inactive' : ''}`;
           return (
             <button
               className={btnClassName} 
