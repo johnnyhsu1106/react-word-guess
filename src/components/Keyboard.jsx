@@ -16,7 +16,7 @@ const Keyboard = () => {
   const keys = useMemo(() => {
     const keys = [];
     for (let i = 0; i < 26; i++) {
-      keys.push(String.fromCharCode('a'.charCodeAt() + i))
+      keys.push(String.fromCharCode('a'.charCodeAt(0) + i))
     }
     return keys;
   }, []);
