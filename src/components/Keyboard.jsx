@@ -9,8 +9,6 @@ const Keyboard = () => {
     isGameOver,
     handleGuessedLetterAdd
   } = useWordContext();
-  
-  const isDisabled = hasFoundWinner || isGameOver;
 
   // Generate Keys from 'a' to 'z', only generated once.
   const keys = useMemo(() => {
@@ -32,7 +30,7 @@ const Keyboard = () => {
             <button
               className={btnClassName} 
               key={key}
-              disabled={isActive || isInactive || isDisabled} 
+              disabled={isActive || isInactive || hasFoundWinner || isGameOver} 
               onClick={() => { handleGuessedLetterAdd(key) }}
             >
               {key}
