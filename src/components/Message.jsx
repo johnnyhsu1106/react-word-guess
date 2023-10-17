@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useWordContext } from '../context/useWordContext';
 
 const Message = () => {
@@ -17,8 +17,9 @@ const Message = () => {
       return 'Too bad. Try Again';
     }
     
-  }, [hasFoundWinner, isGameOver]);
+    return null;
 
+  }, [hasFoundWinner, isGameOver]);
   
 
   return (
