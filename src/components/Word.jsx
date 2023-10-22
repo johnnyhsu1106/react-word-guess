@@ -1,4 +1,4 @@
-import { useWordContext } from '../context/useWordContext';
+import { useWordContext } from '../context/WordContext';
 
 const Word = () => {
   const {

@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useWordContext } from '../context/useWordContext';
+import { useWordContext } from '../context/WordContext';
 
 const Keyboard = () => {
   const {
